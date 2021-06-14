@@ -1,4 +1,6 @@
-/*  fetch(
+/* 
+! First attempt it runs but not neat
+fetch(
     "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode=782446&date=11-06-2021"
   )
     .then(res => res.json())
