@@ -30,7 +30,7 @@ function startSearch() {
 
   async function checkAvailability() {
     const res = await fetch(url);
-    console.log(url);
+    //console.log(url);
     let availablePlaces = [];
     const data = await res.json();
     for (let i = 0; i < data["sessions"].length; i++) {
