@@ -15,26 +15,31 @@
         ? console.log(availablePlaces)
         : console.log("Sorry no slots available");
     }); */
+let pincode = "";
+let date = "";
+function startSearch() {
+  pincode = document.getElementById("pincode").value;
+  date = document.getElementById("date").value;
 
-let pincode = 782446;
-let date = "14-06-2021"; //format DD-MM-YYYY
-let url = `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode=${pincode}&date=${date}`;
+  //format DD-MM-YYYY
+  let url = `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode=${pincode}&date=${date}`;
 
-setInterval(checkAvailability, 6000);
+  setInterval(checkAvailability, 30000);
 
-async function checkAvailability() {
-  const res = await fetch(url);
-  //console.log(url);
-  let availablePlaces = [];
-  const data = await res.json();
-  for (let i = 0; i < data["sessions"].length; i++) {
-    let res = data["sessions"][i];
+  async function checkAvailability() {
+    const res = await fetch(url);
+    console.log(url);
+    let availablePlaces = [];
+    const data = await res.json();
+    for (let i = 0; i < data["sessions"].length; i++) {
+      let res = data["sessions"][i];
 
-    if (res["min_age_limit"] >= 18 && res["available_capacity_dose1"] > 0) {
-      availablePlaces.push(res);
+      if (res["min_age_limit"] >= 18 && res["available_capacity_dose1"] > 0) {
+        availablePlaces.push(res);
+      }
     }
+    availablePlaces.length > 0
+      ? console.log(availablePlaces)
+      : console.log("No slots available");
   }
-  availablePlaces.length > 0
-    ? console.log(availablePlaces)
-    : console.log("No slots available");
 }
