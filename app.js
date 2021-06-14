@@ -25,6 +25,7 @@ function startSearch() {
 
   //format DD-MM-YYYY
   let url = `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode=${pincode}&date=${date}`;
+  checkAvailability();
 
   setInterval(checkAvailability, 30000);
 
